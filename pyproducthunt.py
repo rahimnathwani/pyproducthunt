@@ -4,6 +4,8 @@
 @license: GNU GPL v3
 """
 
+import urllib2
+
 import bs4
 
 import persistance
@@ -68,7 +70,7 @@ def parse_index(page=0, content=None):
     # Read the page content if not provided
     if not content:
         url = generate_index_url(page)
-        response = urllib2.urlopen()
+        response = urllib2.urlopen(url)
         if (response.code < 200) or (response.code >= 300):
             raise ValueError('Failed to parse %s (%d).' % (url, response.code))
         content = repsonse.read()
